@@ -61,8 +61,7 @@ Zielony Fotograf
 |-- Kontakt
 |-- Polityka prywatności
 
-Mapa obejmuje 8 podstron i maksymalnie
-2 poziomy nawigacji.
+
 
 ## 4. Dlaczego WordPress?
 
@@ -90,7 +89,4 @@ AI wykorzystano do przygotowania wstępnego
 opisu fikcyjnej firmy, przykładowych person,
 mapy strony oraz uzasadnienia wyboru CMS.
 
-Treści wymagają samodzielnej weryfikacji
-i dostosowania do założeń projektu.
-Ostateczne poprawki należy opisać
-po zakończeniu pracy.
+
