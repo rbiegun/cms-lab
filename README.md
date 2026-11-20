@@ -1,59 +1,123 @@
-MP1 – Zielony Fotograf (L01–L03)
-
-Repozytorium: https://github.com/rbiegun/cms-lab
-
-1. Firma i odbiorcy
-Zielony Fotograf – fikcyjna firma fotograficzna, hasło: „Zdjęcia z życia wzięte”. Oferuje sesje portretowe, rodzinne i dla par.
-
-Persony:
-- Anna Kowalska, 29 lat – chce umówić sesję rodzinną, korzysta ze smartfona; potrzebuje czytelnej oferty i zdjęć przykładowych.
-- Michał Nowak, 35 lat – szuka sesji portretowej, korzysta z laptopa; zależy mu na opisie usług i wygodnym kontakcie.
-Mapa strony: Strona główna, O nas, Oferta (Sesje portretowe, Sesje rodzinne), Portfolio, Aktualności, Kontakt oraz Polityka prywatności.
-
-Wybór CMS: WordPress wybrano ze względu na prostą edycję treści, Gutenberg, obsługę portfolio i możliwość rozbudowy. Daje większą kontrolę nad instalacją niż Wix, jest łatwiejszy w obsłudze niż Drupal, a Shopify koncentruje się głównie na sklepach internetowych.
-
-2. L01 – Przygotowanie środowiska
-- Przygotowano WordPress Playground Blueprint: język pl_PL, motyw Twenty Twenty-Five, Contact Form 7, nazwa i opis strony, przyjazne odnośniki.
-- Utworzono repozytorium cms-lab i środowisko GitHub Codespaces
-- Projekt działa w Docker Compose: WordPress (wordpress:php8.3-apache) i MariaDB (mariadb:11), port 8080
-- Hasła bazy są w niepublikowanym .env; katalogi wp-content, backups i restore pozostają poza Git
-Uruchomienie: przygotować .env ze zmiennymi DB_PASSWORD i DB_ROOT_PASSWORD, wykonać docker compose up -d i przekierować port 8080 jako Private. Pełne odtworzenie witryny wymaga kopii bazy danych i wp-content.
-
-3. L02 – Treści i Gutenberg
-- Utworzono podstrony oraz trzy wpisy w kategoriach Porady fotograficzne i Aktualności studia.
-- Strona główna jest statyczna, a Aktualności wyświetlają wpisy.
-- Wykorzystano bloki Okładka, Grupa, Kolumny, Nagłówek, Akapit, Przyciski, Cytat.
-- Strona główna zawiera Hero z H1 „Zdjęcia z życia wzięte”, przyciskiem „Umów sesję”, ofertę trzech typów sesji i opinie.
-- Zbudowano menu z podmenu Oferta, stopkę oraz własny niezsynchronizowany wzorzec „Hero – Zielony Fotograf”, użyty też na stronie Oferta.
-
-4. L03 – Style, dostępność i prywatność
-G1 – Style globalne
-Ustawiono kolory: #FFFFFF (tło), #1A1A1A (tekst), #245C3A (zieleń marki), #E8F1E7 (jasna zieleń). Dostosowano typografię, odnośniki i przyciski.
-G2 – CSS i responsywność
-Dodano obrys :focus-visible, skalowanie H1 przez clamp(), odstępy w nawigacji oraz reguły @media dla ekranów do 600 px. Sprawdzono układ przy szerokości około 375 px i obsługę klawiaturą.
-G3 – Audyt dostępności
-Test	Wynik
-Lighthouse Accessibility – strona główna (Mobile)	100/100
-Lighthouse Accessibility – Kontakt (Mobile)	100/100
-WAVE – strona główna, użytkownik niezalogowany	0 błędów, 0 błędów kontrastu, 2 ostrzeżenia
-WAVE AIM Score	10/10
-G4 – Prywatność i zasoby
-- Utworzono edukacyjną Politykę prywatności z odnośnikiem w stopce.
-- W DevTools sprawdzono cookies WordPressa i Codespaces; na analizowanych zrzutach nie wykryto typowych cookies reklamowych ani analitycznych. Nie był to pełny audyt pierwszej wizyty.
-- Potwierdzono lokalne ładowanie fontu Manrope z motywu Twenty Twenty-Five.
-- Nowe tło Hero i trzy grafiki oferty przygotowano za pomocą OpenAI; nie przedstawiają rzeczywistych klientów.
-- Do sprawdzenia przed oddaniem: licencje motywu, fontu i wtyczek, pełny wykaz mediów oraz ewentualne użycie starego obrazu background2-scaled.jpg o nieustalonym źródle.
-
-5. Kopia zapasowa projektu
-
-Wykonano kopię zapasową witryny WordPress obejmującą bazę danych (database.sql) oraz pliki motywów, wtyczek i mediów (wp-content.tar.gz).
-
-Projekt jest przechowywany w repozytorium GitHub cms-lab. Środowisko uruchamiane jest za pomocą Docker Compose.
+# MP1 – Zielony Fotograf (L01–L03)
 
 
-6. Użycie AI i podsumowanie
-ChatGPT / OpenAI wykorzystano do planowania, propozycji treści, wygenerowania ilustracji, pomocy technicznej i redakcji README. Konfigurację, budowę i testy strony wykonano samodzielnie, korzystając ze wskazówek AI. Firma, persony i przykładowe opinie są fikcyjne.
 
-Efekt MP1: działająca witryna WordPress z podstronami, wpisami, menu, ofertą, Hero, stopką, stylami responsywnymi i audytem dostępności.
+**Repozytorium:** https://github.com/rbiegun/cms-lab
 
-Przed oddaniem: uzupełnić ewidencję licencji, dołączyć wymagane zrzuty, wykonać końcowy backup i zmienić wcześniej ujawnione hasła środowiska.
+## 1. Opis projektu
+
+**Zielony Fotograf** to fikcyjna firma oferująca sesje portretowe, rodzinne i dla par. Hasło witryny: „Zdjęcia z życia wzięte”.
+
+### Grupa docelowa
+
+- **Anna Kowalska, 29 lat** – poszukuje sesji rodzinnej, korzysta głównie ze smartfona i oczekuje przejrzystej oferty.
+- **Michał Nowak, 35 lat** – interesuje się sesją portretową, korzysta z laptopa i chce szybko znaleźć opis usług oraz dane kontaktowe.
+
+### Struktura witryny
+
+Strona główna, O nas, Oferta (sesje portretowe i rodzinne), Portfolio, Aktualności, Kontakt oraz Polityka prywatności.
+
+**Wybór CMS:** WordPress wybrano ze względu na edytor Gutenberg, łatwe zarządzanie treścią i możliwość rozbudowy. Zapewnia większą kontrolę nad instalacją niż Wix i jest prostszy w obsłudze niż Drupal. Shopify koncentruje się przede wszystkim na sklepach internetowych.
+
+## 2. L01 – Przygotowanie środowiska
+
+- Przygotowano WordPress Playground Blueprint z językiem `pl_PL`, motywem Twenty Twenty-Five, wtyczką Contact Form 7 i przyjaznymi odnośnikami.
+- Utworzono repozytorium GitHub `cms-lab`.
+- Uruchomiono WordPress w GitHub Codespaces z użyciem Docker Compose.
+- Zastosowano WordPress (`wordpress:php8.3-apache`) oraz MariaDB (`mariadb:11`) na porcie `8080`.
+- Hasła do bazy danych zapisano w pliku `.env`, wykluczonym z repozytorium.
+
+**Uruchomienie:** Należy utworzyć `.env` na podstawie `.env.example`, wykonać `docker compose up -d` i przekierować port `8080`. Odtworzenie pełnej witryny wymaga również importu bazy danych oraz katalogu `wp-content`.
+
+## 3. L02 – Treści i Gutenberg
+
+- Utworzono podstrony oraz trzy wpisy w kategoriach „Porady fotograficzne” i „Aktualności studia”
+- Skonfigurowano statyczną stronę główną oraz stronę Aktualności wyświetlającą wpisy
+- Wykorzystano bloki Gutenberg: Okładka, Grupa, Kolumny, Nagłówek, Akapit, Przyciski i Cytat
+- Przygotowano Hero z nagłówkiem H1 „Zdjęcia z życia wzięte” i przyciskiem „Umów sesję”
+- Dodano sekcję oferty trzech rodzajów sesji oraz opinie klientów
+- Zbudowano menu z podmenu Oferta i wspólną stopkę zawierającą kontakt oraz politykę prywatności
+- Utworzono własny wzorzec „Hero – Zielony Fotograf”, wykorzystany również na stronie Oferta
+
+## 4. L03 – Style, dostępność i prywatność
+
+### G1 – Style globalne
+
+Skonfigurowano paletę kolorów:
+
+- **Biały:** `#FFFFFF` – tło strony
+- **Ciemny:** `#1A1A1A` – tekst
+- **Zieleń marki:** `#245C3A` – przyciski i akcenty
+- **Jasna zieleń:** `#E8F1E7` – elementy uzupełniające
+
+Dostosowano typografię, odnośniki oraz wygląd przycisków
+
+### G2 – CSS i responsywność
+
+Dodano własny CSS:
+
+- Widoczny fokus klawiatury (`:focus-visible`)
+- Responsywne skalowanie nagłówka H1 (`clamp()`)
+- Odstępy dla elementów nawigacji
+- Reguły `@media` dla ekranów do 600 px.
+
+Sprawdzono układ przy szerokości około 375 px oraz nawigację klawiaturą.
+
+### G3 – Audyt dostępności
+
+Przeprowadzono testy Lighthouse i WAVE.
+
+**Wyniki Lighthouse Accessibility:**
+
+- Strona główna, Mobile – **100/100**
+- Kontakt, Mobile – **100/100**
+
+**Wyniki WAVE dla strony głównej (użytkownik niezalogowany):**
+
+- Błędy dostępności – **0**
+- Błędy kontrastu – **0**
+- Ostrzeżenia – **2**.
+- AIM Score – **10/10**
+
+W ramach poprawek zmieniono tło Hero, zastosowano ciemnozielone tła pod białym tekstem i dostosowano układ do urządzeń mobilnych.
+
+Pozostałe ostrzeżenia WAVE dotyczą nazwy witryny („Possible heading”) oraz przycisku „Umów sesję” („Redundant link”). Działanie przycisku zweryfikowano ręcznie.
+
+Wyniki testów automatycznych nie są równoznaczne z pełnym potwierdzeniem zgodności z WCAG
+
+### G4 – Prywatność i licencje
+
+- Przygotowano Politykę prywatności i dodano odnośnik do niej w stopce.
+- Sprawdzono cookies w DevTools. Zaobserwowano techniczne cookies WordPressa i środowiska Codespaces; w analizowanym zakresie nie zidentyfikowano typowych cookies analitycznych ani reklamowych.
+- Potwierdzono lokalne ładowanie fontu Manrope z plików motywu.
+
+**Wykorzystane technologie i zasoby:**
+
+- **WordPress** – GPLv2 lub nowsza.
+- **Motyw Twenty Twenty-Five** – GPLv2 lub nowsza.
+- **Font Manrope** – SIL Open Font License 1.1.
+- **Akismet Anti-spam** – GPLv2 lub nowsza, wtyczka nieaktywna.
+- **Hello Dolly** – GPLv2 lub nowsza, wtyczka nieaktywna.
+- **Grafiki oferty i nowe tło Hero** – materiały demonstracyjne wygenerowane przy użyciu OpenAI.
+
+Grafiki wygenerowane przez AI nie przedstawiają rzeczywistych klientów. Ewidencja obejmuje wymienione zasoby i nie stanowi potwierdzenia licencji wszystkich pozostałych plików multimedialnych
+
+## 5. Kopia zapasowa i dokumentacja
+
+Wykonano końcową kopię zapasową witryny WordPress:
+
+- `database.sql` – baza danych.
+- `wp-content.tar.gz` – zdjęcia, motywy i wtyczki.
+
+Do dokumentacji dołączono screenshoty strony w wersji desktopowej i mobilnej oraz wyniki testów Lighthouse i WAVE, w tym materiały przed i po poprawkach.
+
+Pliki konfiguracji projektu znajdują się w repozytorium GitHub `cms-lab`.
+
+## 6. Wykorzystanie AI i podsumowanie
+
+ChatGPT / OpenAI wykorzystano do planowania struktury strony, przygotowania przykładowych treści, generowania grafik, pomocy technicznej oraz redakcji dokumentacji.
+
+Konfigurację WordPressa, budowę witryny i testy wykonano samodzielnie, korzystając ze wskazówek AI. Firma, persony i przykładowe opinie klientów są fikcyjne.
+
+
+**MP1:** działająca witryna WordPress z podstronami, wpisami, menu, sekcją Hero, ofertą, wspólną stopką, stylami responsywnymi, polityką prywatności i udokumentowanymi testami dostępności.
