@@ -1,0 +1,76 @@
+
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        {
+          "slug": "base",
+          "color": "#FFFFFF",
+          "name": "Biały"
+        },
+        {
+          "slug": "contrast",
+          "color": "#1A1A1A",
+          "name": "Ciemny"
+        },
+        {
+          "slug": "primary",
+          "color": "#245C3A",
+          "name": "Zieleń marki"
+        },
+        {
+          "slug": "secondary",
+          "color": "#E8F1E7",
+          "name": "Jasna zieleń"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontSizes": [
+        {
+          "slug": "small",
+          "size": "0.875rem",
+          "name": "Mały"
+        },
+        {
+          "slug": "medium",
+          "size": "1.125rem",
+          "name": "Średni"
+        },
+        {
+          "slug": "large",
+          "size": "1.5rem",
+          "name": "Duży"
+        },
+        {
+          "slug": "x-large",
+          "size": "clamp(2rem, 1.5rem + 2.5vw, 3.25rem)",
+          "name": "Nagłówek"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--base)",
+      "text": "var(--wp--preset--color--contrast)"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--primary)"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "var(--wp--preset--color--base)"
+        }
+      }
+    }
+  }
+}
