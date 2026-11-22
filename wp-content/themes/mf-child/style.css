@@ -1,0 +1,22 @@
+
+/*
+Theme Name: Zielony Fotograf Child
+Template: twentytwentyone
+Description: Motyw potomny Twenty Twenty-One dla projektu MP2 – Zielony Fotograf.
+Version: 1.0.0
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+Text Domain: mf-child
+*/
+
+:root {
+    --mf-accent: #245C3A;
+}
+
+a {
+    color: var(--mf-accent);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif;
+}
