@@ -20,3 +20,26 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: Arial, sans-serif;
 }
+/* Nagłówek na stronie głównej */
+.mf-hero-title {
+    width: 100%;
+    max-width: 900px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 1.15;
+    text-align: center;
+}
+/* Szerszy obszar tekstu na zdjęciu głównym */
+.home .wp-block-cover__inner-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.home .wp-block-cover__inner-container .mf-hero-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(36px, 5vw, 72px) !important;
+    line-height: 1.15;
+    text-align: center;
+}
